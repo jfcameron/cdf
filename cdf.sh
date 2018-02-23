@@ -85,9 +85,9 @@ back()
 #---------------------------------------------------------------------
 # Mainline begins here
 #---------------------------------------------------------------------
-progName=$0
-shortProgName=`echo $progName|sed 's/^.*\///'`
-noAffixProgName=`echo $shortProgName|sed 's/\.[^.]*$//'`
+progName=cdf.sh #$0
+shortProgName=cdf.sh #`echo $progName|sed 's/^.*\///'`
+noAffixProgName=cdf #`echo $shortProgName|sed 's/\.[^.]*$//'`
 verbose=''
 initialArgs="$@"
 

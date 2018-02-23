@@ -6,22 +6,22 @@ Change working directory to finder directory
 ## Usage
 Add the following alias to your bash profile:
 
-    alias $noAffixProgName=". /path/to/$shortProgName"
+    alias cdf=". /path/to/cdf.sh"
 
 then use cdf at any time to change the current directory of your interactive bash session to the directory of the topmost finder window.
 
     #---------------------------------------------------------------------
     #
-    # $progName -- help info
+    # cdf.sh -- help info
     #
     # Summary:
     #   Change current directory to the Finder's front most window's 
     #   directory. MacOS only!
     #
     # Example Usage:
-    #   $noAffixProgName
+    #   cdf
     #
-    # $shortProgName: [ -h NOARG ]
+    # cdf.sh: [ -h NOARG ]
     #
     #   option: -h
     #     print this help page
@@ -32,7 +32,7 @@ then use cdf at any time to change the current directory of your interactive bas
     #
     # Config:
     #   add following alias to your .bash_profile: 
-    #     alias $noAffixProgName=". /path/to/$shortProgName"
+    #     alias cdf=". /path/to/cdf.sh"
     #
     # Author:
     #   Written by Joseph Cameron
