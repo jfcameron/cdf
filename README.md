@@ -1,5 +1,14 @@
 # cdf
-change working directory to finder directory
+
+## Description
+Change working directory to finder directory
+
+## Usage
+Add the following alias to your bash profile:
+
+    alias $noAffixProgName=". /path/to/$shortProgName"
+
+then use cdf at any time to change the current directory of your interactive bash session to the directory of the topmost finder window.
 
     #---------------------------------------------------------------------
     #
