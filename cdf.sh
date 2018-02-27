@@ -15,8 +15,9 @@ sed 's/^# \{0,1\}//' << Help
 #
 # Example Usage:
 #   $noAffixProgName
+#   $noAffixProgName back
 #
-# $shortProgName: [ -h NOARG ]
+# $shortProgName: [ -h, NOARG, b/back ]
 #
 #   option: -h
 #     print this help page
@@ -24,6 +25,9 @@ sed 's/^# \{0,1\}//' << Help
 #   option: NOARG
 #     changes current dir of interactive bash session to finder's 
 #     topmost window's dir.
+#
+#   option: b/back
+#     restore current directory to the one before last cdf. 
 #
 # Config:
 #   add following alias to your .bash_profile: 
@@ -43,12 +47,7 @@ Help
 #---------------------------------------------------------------------
 # Print info, warning, or error and eit
 #---------------------------------------------------------------------
-Log()         { echo -e "$shortProgName:" "$@"; }
-Info()        { if [ x$verbose = xTRUE ]; then echo "$shortProgName: Info:" "$@"; fi; }
-Warn()        { echo -e "$shortProgName: \033[1;33mWarning:\033[0m" "$@"; }
-Error()       { echo -e "$shortProgName: \033[1;31mError:\033[0m"   "$@" >/dev/stderr; exit 1; }
-Print()       { echo -e "$@"; }
-RequiredVar() { if [ -z ${!1+x} ]; then printHelp; Error "Required variable \"${1}\" is unset. Hint: ${2}"; fi; }
+Error() { echo -e "$shortProgName: \033[1;31mError:\033[0m"   "$@" >/dev/stderr; }
 
 # ---------------------------------------------------------------------
 # Implementation
@@ -75,7 +74,7 @@ EOT
   fi
 }
 
-back()
+_back()
 {
   if [ -z ${!JFCAMERON_CDF_LAST_DIR+x} ]; then
     cd $JFCAMERON_CDF_LAST_DIR
@@ -85,11 +84,9 @@ back()
 #---------------------------------------------------------------------
 # Mainline begins here
 #---------------------------------------------------------------------
-progName=cdf.sh #$0
-shortProgName=cdf.sh #`echo $progName|sed 's/^.*\///'`
-noAffixProgName=cdf #`echo $shortProgName|sed 's/\.[^.]*$//'`
-verbose=''
-initialArgs="$@"
+progName=cdf.sh
+shortProgName=cdf.sh
+noAffixProgName=cdf
 
 if [ $# == 0 ]; then
   _cdf
@@ -100,8 +97,8 @@ else
         printHelp
       ;;
 
-      back)
-        back
+      b | back)
+        _back
       ;;
 
       *) 
